@@ -6,6 +6,23 @@ class Guess
     string[,] Words = { { "Batman", "Casablanca", "Fantastic Beasts", "A Quiet Place", "The Garfield Movie" }, { "Fourth Wing", "The Midnight Feast", "Ender's Game", "Throne of Glass", "Divergent" }, { "Horse", "Pig", "Unicorn", "Dog", "Cat" } };
     static void Main(string[] args)
     {
+        string selectedWord, guess = RandomizedWord();
+
+        Console.WriteLine($"Category: {guess.categories[randomCategory]}");
+        Console.WriteLine("Enter Word: ");
+        string userInput = Console.ReadLine();
+        if (userInput == selectedWord)
+        {
+            Console.Write("Congrats! You guessed my word!");
+        }
+        else
+        {
+            Console.Write("I'm sorry, you did not guess my word.");
+        }
+    }
+
+    static void RandomizedWord()
+    {
         Random rnd = new Random();
         Guess guess = new Guess();
 
@@ -14,8 +31,6 @@ class Guess
 
         string selectedWord = guess.Words[randomCategory, randomWord];
 
-        Console.WriteLine($"Category: {guess.categories[randomCategory]}");
-        Console.WriteLine("Enter Word: ");
-        string userInput = Console.ReadLine();
+        return selectedWord, guess;
     }
 }

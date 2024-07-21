@@ -10,7 +10,10 @@ class Guess
         var result = RandomizeChoice();
         Guess guess = new Guess();
 
-        string randomWord = guess.words[result.randomCategory, result.randomWord];
+        string category = guess.categories[result.randomCategory];
+        string word = guess.words[result.randomCategory, result.randomWord];
+
+        Console.WriteLine($"Category: {category}");
         Console.WriteLine("Enter your guess: ");
         var userChoice = Console.ReadLine();
 
@@ -21,7 +24,7 @@ class Guess
             userChoice = Console.ReadLine();
         }
 
-        if(userChoice == randomWord)
+        if(userChoice == word)
         {
             Console.Write("Congrats! You guessed my word!");
         }

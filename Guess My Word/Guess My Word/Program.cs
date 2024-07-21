@@ -17,10 +17,9 @@ class Guess
         Console.WriteLine("Enter your guess: ");
         var userChoice = Console.ReadLine();
 
-        while (userChoice == null)
+        while(string.IsNullOrEmpty(userChoice))
         {
-            Console.Write("Invalid answer. Please enter a word.");
-            Console.WriteLine("Enter your guess: ");
+            Console.WriteLine("You did not enter a word. Please enter your guess: ");
             userChoice = Console.ReadLine();
         }
 

@@ -42,4 +42,36 @@ class Guess
 
         return (randomCategory, randomWord);
     }
+
+    public static () EasyMode()
+    {
+        int tries = 5;
+
+        var result = RandomizeChoice();
+        Guess guess = new Guess();
+
+        string category = guess.categories[result.randomCategory];
+        string word = guess.words[result.randomCategory, result.randomWord];
+
+        while(tries != 0)
+        {
+            Console.WriteLine($"Category {category}");
+            Console.WriteLine("Enter your guess: ");
+            var userChoice = Console.ReadLine();
+
+            if(userChoice == word)
+            {
+                Console.Write($"Congrats! You guessed the word! It was: {word}");
+                tries -= 1;
+                Console.Write($"It took you {tries} tries");
+            }
+            else if(userChoice != word)
+            {
+                tries--;
+                Console.Write($"Incorrect. Category: {category} Tries: {tries}");
+                Console.WriteLine($"Enter your guess: ");
+                userChoice = Console.ReadLine();
+            }
+        }
+    }
 }

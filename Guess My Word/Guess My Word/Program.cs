@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Tracing;
 
 class Guess
 {
@@ -47,23 +48,29 @@ class Guess
     public static void EasyMode()
     {
         int tries = 7;
+        int attempt = 0;
 
         var result = RandomizeChoice();
         Guess guess = new Guess();
 
         string category = guess.categories[result.randomCategory];
         string word = guess.words[result.randomCategory, result.randomWord];
-
         while (tries != 0)
         {
+            foreach (char letter in word)
+            {
+                Console.Write('_');
+            }
+            Console.WriteLine();
             Console.WriteLine($"Category: {category}");
             Console.WriteLine("Enter your guess: ");
             var userChoice = Console.ReadLine();
 
             if (userChoice == word)
             {
-                Console.Write($"Congrats! You guessed the word! It was: {word}");
-                Console.Write($"It took you {7 - tries} tries");
+                attempt++;
+                Console.Write($"Congrats! You guessed the word! It was: {word}. ");
+                Console.Write($"It took you {attempt} tries");
                 break;
             }
             else if (string.IsNullOrEmpty(userChoice))
@@ -73,6 +80,7 @@ class Guess
             else
             {
                 tries--;
+                attempt++;
                 Console.WriteLine($"Incorrect. Category: {category} Tries left: {tries}");
             }
         }
@@ -81,6 +89,7 @@ class Guess
     public static void NormalMode()
     {
         int tries = 5;
+        int attempt = 0;
 
         var result = RandomizeChoice();
         Guess guess = new Guess();
@@ -90,14 +99,20 @@ class Guess
 
         while (tries != 0)
         {
+            foreach (char letter in word)
+            {
+                Console.Write('_');
+            }
+            Console.WriteLine();
             Console.WriteLine($"Category: {category}");
             Console.WriteLine("Enter a word: ");
             var userChoice = Console.ReadLine();
 
             if (userChoice == word)
             {
-                Console.Write($"Congrats! You guessed the word! It was: {word}");
-                Console.Write($"It took you {5 - tries} tries");
+                attempt++;
+                Console.Write($"Congrats! You guessed the word! It was: {word}. ");
+                Console.Write($"It took you {attempt} tries");
                 break;
             }
             else if (string.IsNullOrEmpty(userChoice))
@@ -107,6 +122,7 @@ class Guess
             else
             {
                 tries--;
+                attempt++;
                 Console.WriteLine($"Incorrect. Category: {category} Tries left: {tries}");
             }
         }
@@ -115,6 +131,7 @@ class Guess
     public static void HardMode()
     {
         int tries = 3;
+        int attempt = 0;
 
         var result = RandomizeChoice();
         Guess guess = new Guess();
@@ -124,22 +141,30 @@ class Guess
 
         while (tries != 0)
         {
+            foreach (char letter in word)
+            {
+                Console.Write('_');
+            }
+            Console.WriteLine();
             Console.WriteLine($"Category: {category}");
             Console.WriteLine("Enter a word: ");
             var userChoice = Console.ReadLine();
 
             if (userChoice == word)
             {
-                Console.Write($"Congrats! You guessed the word! It was: {word}");
-                Console.Write($"It took you {3 - tries} tries");
+                attempt++;
+                Console.Write($"Congrats! You guessed the word! It was: {word}. ");
+                Console.Write($"It took you {attempt} tries");
                 break;
             }
             else if (string.IsNullOrEmpty(userChoice))
             {
+                attempt++;
                 Console.WriteLine($"You did not enter a word. Please enter a word. The category is: {category}");
             }
             else
             {
+                attempt++;
                 tries--;
                 Console.WriteLine($"Incorrect. Category: {category} Tries left: {tries}");
             }
